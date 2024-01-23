@@ -1,0 +1,23 @@
+schemaVersion: 2.1.0
+metadata:
+  name: dictionary-ui
+components:
+  - name: tools
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8:3.10
+      endpoints:
+        - exposure: public
+          name: nodejs
+          protocol: https
+          targetPort: 3000
+      memoryLimit: '4Gi'
+      memoryRequest: '1Gi'
+      cpuLimit: '2'
+      cpuRequest: '0.50'
+      mountSources: true
+      volumeMounts:
+        - name: npm
+          path: /home/user/.npm
+  - name: npm
+    volume:
+      size: 1G
